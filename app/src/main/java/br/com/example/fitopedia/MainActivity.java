@@ -42,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
         iaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ExplorarPlantas.class);
+                Intent intent = new Intent(getApplicationContext(), ConsultarIA.class);
                 startActivity(intent);
             }
         });
         sobreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ExplorarPlantas.class);
+                Intent intent = new Intent(getApplicationContext(), Sobre.class);
                 startActivity(intent);
             }
         });
