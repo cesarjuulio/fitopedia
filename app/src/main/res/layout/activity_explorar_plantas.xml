@@ -8,21 +8,38 @@
     android:background="@drawable/tela_2"
     tools:context=".ExplorarPlantas">
 
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="158dp"
-        android:layout_height="63dp"
-        android:backgroundTint="@android:color/transparent"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="237dp"
-        tools:layout_editor_absoluteY="16dp" />
-
     <SearchView
+        android:id="@+id/searchPlantas"
         android:layout_width="405dp"
         android:layout_height="40dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="99dp"
         android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/homeImageButton"
+        android:layout_width="131dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_home" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/plantasRecyclerView"
+        android:layout_width="303dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="54dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
