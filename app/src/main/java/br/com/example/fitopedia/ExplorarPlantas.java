@@ -22,7 +22,6 @@ public class ExplorarPlantas extends AppCompatActivity {
     private ImageButton homeImageButton;
     private SearchView searchPlantas;
     private RecyclerView recyclerView;
-    private PlantaAdapter adapter;
     private List<Planta> listaPlantas = new ArrayList<>();
 
     @Override
@@ -40,14 +39,10 @@ public class ExplorarPlantas extends AppCompatActivity {
         searchPlantas = findViewById(R.id.searchPlantas);
         recyclerView = findViewById(R.id.plantasRecyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PlantaAdapter(this, listaPlantas);
-        recyclerView.setAdapter(adapter);
-
-        // 🔹 Dados de exemplo (depois vamos puxar da planilha)
-        listaPlantas.add(new Planta("Hortelã", "Mentha spicata", "", "", "", "", "", "", "", "", "", "Horta", "https://upload.wikimedia.org/wikipedia/commons/7/70/Mentha_spicata.jpg", "", ""));
-        listaPlantas.add(new Planta("Camomila", "Matricaria chamomilla", "", "", "", "", "", "", "", "", "", "Campo", "https://upload.wikimedia.org/wikipedia/commons/4/42/Chamomile-02.jpg", "", ""));
-        adapter.notifyDataSetChanged();
+//        // 🔹 Dados de exemplo (depois vamos puxar da planilha)
+//        listaPlantas.add(new Planta("Hortelã", "Mentha spicata", "", "", "", "", "", "", "", "", "", "Horta", "https://upload.wikimedia.org/wikipedia/commons/7/70/Mentha_spicata.jpg", "", ""));
+//        listaPlantas.add(new Planta("Camomila", "Matricaria chamomilla", "", "", "", "", "", "", "", "", "", "Campo", "https://upload.wikimedia.org/wikipedia/commons/4/42/Chamomile-02.jpg", "", ""));
+//        adapter.notifyDataSetChanged();
 
         homeImageButton.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -55,29 +50,29 @@ public class ExplorarPlantas extends AppCompatActivity {
         });
 
         // 🔹 Filtro de pesquisa
-        searchPlantas.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                filtrarPlantas(newText);
-                return true;
-            }
-        });
+//        searchPlantas.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                filtrarPlantas(newText);
+//                return true;
+//            }
+//        });
     }
 
-    private void filtrarPlantas(String texto) {
-        List<Planta> filtrada = new ArrayList<>();
-        for (Planta planta : listaPlantas) {
-            if (planta.getNomePopular().toLowerCase().contains(texto.toLowerCase()) ||
-                    planta.getNomeCientifico().toLowerCase().contains(texto.toLowerCase())) {
-                filtrada.add(planta);
-            }
-        }
-        adapter = new PlantaAdapter(this, filtrada);
-        recyclerView.setAdapter(adapter);
-    }
+//    private void filtrarPlantas(String texto) {
+//        List<Planta> filtrada = new ArrayList<>();
+//        for (Planta planta : listaPlantas) {
+//            if (planta.getNomePopular().toLowerCase().contains(texto.toLowerCase()) ||
+//                    planta.getNomeCientifico().toLowerCase().contains(texto.toLowerCase())) {
+//                filtrada.add(planta);
+//            }
+//        }
+//        adapter = new PlantaAdapter(this, filtrada);
+//        recyclerView.setAdapter(adapter);
+//    }
 }

@@ -1,67 +1,47 @@
 package br.com.example.fitopedia;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class PlantaAdapter extends RecyclerView.Adapter<PlantaAdapter.PlantaViewHolder> {
+public class PlantaAdapter extends RecyclerView.Adapter<PlantaViewHolder> {
 
-    private Context context;
-    private List<Planta> listaPlantas;
+    private List<Planta> plantasList;
 
-    // Construtor com lista e contexto
-    public PlantaAdapter(Context context, List<Planta> listaPlantas) {
-        this.context = context;
-        this.listaPlantas = listaPlantas;
+    // Construtor do adapter
+    public PlantaAdapter(List<Planta> plantasList) {
+        this.plantasList = plantasList;
     }
 
-    @NonNull
     @Override
-    public PlantaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.item_plantas, parent, false);
+    public PlantaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Infla o layout para o item da lista
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_plantas, parent, false);
         return new PlantaViewHolder(itemView);
     }
+    public void onBindViewHolder(PlantaViewHolder holder, int position) {
+        // Obtém a planta da lista
+        Planta planta = plantasList.get(position);
 
-    @Override
-    public void onBindViewHolder(@NonNull PlantaViewHolder holder, int position) {
-        Planta planta = listaPlantas.get(position);
+        // Preenche as views com os dados da planta
+        holder.nomePopularTextView.setText(planta.getNomePopular());
+        holder.nomeCientificoTextView.setText(planta.getNomeCientifico());
 
-        holder.txtNomePopular.setText(planta.getNomePopular());
-        holder.txtNomeCientifico.setText(planta.getNomeCientifico());
-
-        // Carrega imagem (se tiver link na planilha)
-        if (planta.getImagemDemonstracao1() != null && !planta.getImagemDemonstracao1().isEmpty()) {
-            Glide.with(context).load(planta.getImagemDemonstracao1()).into(holder.imgPlanta);
-        } else {
-            holder.imgPlanta.setImageResource(R.drawable.ic_launcher_foreground); // imagem padrão
-        }
+        // Carrega as imagens usando Glide (ou Picasso)
+        Glide.with(holder.itemView.getContext())
+                .load(planta.getImagemDemonstracao1())
+                .into(holder.plantaImageView);
     }
 
     @Override
     public int getItemCount() {
-        return listaPlantas.size();
-    }
-
-    // ViewHolder
-    public static class PlantaViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNomePopular, txtNomeCientifico;
-        ImageView imgPlanta;
-
-        public PlantaViewHolder(@NonNull View itemView) {
-            super(itemView);
-            txtNomePopular = itemView.findViewById(R.id.txtNomePopular);
-            txtNomeCientifico = itemView.findViewById(R.id.txtNomeCientifico);
-            imgPlanta = itemView.findViewById(R.id.imgPlanta);
-        }
+        return plantasList.size();
     }
 }
