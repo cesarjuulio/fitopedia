@@ -5,6 +5,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import br.com.example.fitopedia.R;
+
 /* loaded from: classes3.dex */
 public class PlantasViewHolder extends RecyclerView.ViewHolder {
     TextView nomeCientificoTextView;

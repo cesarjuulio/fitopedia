@@ -23,23 +23,23 @@ public class ExplorarPlantas extends AppCompatActivity {
     private ImageButton homeImageButton;
     private ArrayList<Planta> listaPlantas;
     private String nomePlanilha;
-    private RecyclerView plantasRecyclerVIew;
+    private RecyclerView plantasRecyclerView;
     private MaterialToolbar toolbar;
 
-    @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_explorar_plantas);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), new OnApplyWindowInsetsListener() { // from class: br.com.example.fitopedia.ExplorarPlantas$$ExternalSyntheticLambda0
-            @Override // androidx.core.view.OnApplyWindowInsetsListener
+            @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return ExplorarPlantas.lambda$onCreate$0(view, windowInsetsCompat);
+                return ExplorarPlantas.onCreate(view, windowInsetsCompat);
             }
         });
         this.homeImageButton = (ImageButton) findViewById(R.id.homeImageButton);
         this.homeImageButton.setOnClickListener(new View.OnClickListener() { // from class: br.com.example.fitopedia.ExplorarPlantas.1
-            @Override // android.view.View.OnClickListener
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ExplorarPlantas.this.getApplicationContext(), (Class<?>) MainActivity.class);
                 ExplorarPlantas.this.startActivity(intent);
@@ -66,14 +66,17 @@ public class ExplorarPlantas extends AppCompatActivity {
         } else {
             Log.d("CSV", "Nenhum dado salvo encontrado.");
         }
-        this.plantasRecyclerVIew = (RecyclerView) findViewById(R.id.plantasRecyclerView);
+
+        listaPlantas.add(new Planta("Macela; marcela; macela-do-campo", "Achyrocline satureioides", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Macela.JPG/1200px-Macela.JPG"));
+
+        this.plantasRecyclerView = (RecyclerView) findViewById(R.id.plantasRecyclerView);
         this.toolbar = (MaterialToolbar) findViewById(R.id.toolbar);
         setSupportActionBar(this.toolbar);
         PlantaAdapter adapter = new PlantaAdapter(this, this.listaPlantas);
-        this.plantasRecyclerVIew.setAdapter(adapter);
+        this.plantasRecyclerView.setAdapter(adapter);
     }
 
-    static /* synthetic */ WindowInsetsCompat lambda$onCreate$0(View v, WindowInsetsCompat insets) {
+    static WindowInsetsCompat onCreate(View v, WindowInsetsCompat insets) {
         Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
         v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
         return insets;
